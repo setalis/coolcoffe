@@ -11,7 +11,7 @@ class CoffeeController extends Controller
     public function index()
     {
         $coffees = Coffee::where('active', true)->get();
-        return view('admin.coffee.index', compact('coffees'));
+        return view('coffee.index', compact('coffees'));
     }
 
     public function adminIndex()

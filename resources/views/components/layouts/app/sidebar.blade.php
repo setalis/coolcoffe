@@ -19,7 +19,8 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                    <flux:navlist.item icon="home" :href="route('admin.coffee.index')" :current="request()->routeIs('admin.coffee.index')" wire:navigate>{{ __('Coffee') }}</flux:navlist.item>
+                    <flux:navlist.item icon="beaker" :href="route('admin.coffee.index')" :current="request()->routeIs('admin.coffee.index')" wire:navigate>{{ __('Coffee') }}</flux:navlist.item>
+                    <flux:navlist.item icon="shopping-cart" :href="route('admin.coffee.orders')" :current="request()->routeIs('admin.coffee.orders')" wire:navigate>{{ __('Orders') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 

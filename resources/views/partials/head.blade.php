@@ -7,8 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 
-<!-- <link rel="preconnect" href="https://fonts.bunny.net">
-<link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" /> -->
+
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -22,8 +21,9 @@
         t.src=v;s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '979035834194347');
+        fbq('init', '1195257448988986');
         fbq('track', 'PageView');
+        fbq('track', 'ViewContent');
     </script>
-<noscript><img height="1" src="https://www.facebook.com/tr?id=979035834194347&amp;ev=PageView&amp;noscript=1" style="display:none" width="1"/></noscript>
+<noscript><img height="1" src="https://www.facebook.com/tr?id=1195257448988986&amp;ev=PageView&amp;noscript=1" style="display:none" width="1"/></noscript>
 <!-- End Meta Pixel Code -->

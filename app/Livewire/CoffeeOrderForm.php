@@ -38,6 +38,7 @@ class CoffeeOrderForm extends Component
     public $reff = '';
     public $temp = '';
     public $fbpix = '';
+    public $hit = '';
 
     protected $rules = [
         'firstname' => 'required|string|max:255',
@@ -54,13 +55,16 @@ class CoffeeOrderForm extends Component
         $this->coffee = $coffee;
         $this->prodname = $coffee->name; 
         $path = 'https://coolcoffee.discount/storage/';
-        $this->prodimage = $path . $coffee->image; 
+        $this->prodimage = $path . $coffee->image;
+        
+        // Получаем параметр hit из URL, если он есть
+        $this->hit = request()->query('hit', '');
     }
 
     public function nextStep()
     {
         if($this->step === 1){
-            $this->dispatch('fb-event', name: 'coolcoffee_discount_Order_info'); 
+            // $this->dispatch('fb-event', name: 'coolcoffee_discount_Order_info'); 
             $this->step++;
         }
         elseif ($this->step === 2) {
@@ -69,7 +73,7 @@ class CoffeeOrderForm extends Component
                 'lastname' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
             ]);
-            $this->dispatch('fb-event', name: 'coolcoffee_discount_Create_account');           
+            $this->dispatch('fb-event', name: 'InitiateCheckout');           
 
 
             // Создаем заказ
@@ -83,6 +87,7 @@ class CoffeeOrderForm extends Component
                 'reff' => $this->reff,
                 'temp' => $this->temp,
                 'country' => $this->country,
+                'hit' => $this->hit,
                 'completed' => false
             ]);
             
@@ -107,7 +112,7 @@ class CoffeeOrderForm extends Component
                 'country' => $this->country,
             ]);
 
-            $this->dispatch('fb-event', name: 'coolcoffee_discount_Delivery_address');
+            $this->dispatch('fb-event', name: 'Lead');
             $this->step++;
         } 
         // Добавляем отправку события при изменении шага
@@ -141,11 +146,14 @@ class CoffeeOrderForm extends Component
                 'completed' => true
             ]);
 
-            $this->dispatch('fb-event', name: 'coolcoffee_discount_Confirmation_Order');
+            $this->dispatch('fb-event', name: 'Purchase', options: [
+                'value' => 2.00,
+                'currency' => 'USD'
+            ]);
             
             // Получаем данные заказа
             $order = CoffeeOrder::find($this->orderId);
-            $fb = 979035834194347;
+            $fb = 1195257448988986;
             
             // Формируем специальную ссылку
             $redirectUrl = 'https://ad.extra-news.info/fts/3Agwdy0yBSe2-3Ah1tJQV92JZ/?' . http_build_query([
@@ -164,6 +172,7 @@ class CoffeeOrderForm extends Component
                 'fname' => $order->firstname,
                 'lname' => $order->lastname,
                 'fbpix' => $fb,
+                'hit' => $order->hit,
             ]);;
 
             // dd($redirectUrl);

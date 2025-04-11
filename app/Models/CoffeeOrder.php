@@ -28,6 +28,7 @@ class CoffeeOrder extends Model
         'sub2',
         'reff',
         'temp',
+        'hit',
         'completed'
     ];
 

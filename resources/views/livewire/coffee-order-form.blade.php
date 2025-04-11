@@ -100,10 +100,10 @@
                 <div class="flex flex-col md:flex-row gap-6 w-4xl h-full items-center">
                     <!-- Left side -->
                     <div class="flex flex-col md:w-2/3 h-full justify-center bg-white rounded-xl p-4 md:p-8 border border-[#E6BF8D] ">
-                        <div class = "flex flex-row mb-6 md:hidden ">
-                            <div class="border border-[#E6BF8D] rounded-lg py-4 px-4 mr-4">
-                                <img src="{{ asset('storage/' . $coffee->image) }}" alt="Product image" class="w-auto h-full object-cover rounded  mx-auto max-h-[100px] max-w-[100px]">  
-                            </div> 
+                        <div class="flex flex-row mb-6 md:hidden gap-4">
+                            <div class="h-[150px] w-[150px] border border-[#E6BF8D] rounded-lg p-2 flex items-center justify-center">
+                                <img src="{{ asset('storage/' . $coffee->image) }}" alt="Product image" class="max-h-[120px] max-w-[120px] object-contain rounded">  
+                            </div>
                             <div class="ml-4">
                                 <div class="font-semibold text-lg text-[#663B10] mb-2">{{ $coffee->name }}</div>
                                 <div class="flex flex-row w-full items-end gap-6 mb-1">                            
@@ -189,10 +189,10 @@
                     <!-- Left side -->
 
                     <div class="flex flex-col md:w-2/3 h-full justify-center bg-white rounded-xl p-4 md:p-8 border border-[#E6BF8D] ">
-                        <div class = "flex flex-row mb-6 md:hidden ">
-                            <div class="border border-[#E6BF8D] rounded-lg py-4 px-4 mr-4">
-                                <img src="{{ asset('storage/' . $coffee->image) }}" alt="Product image" class="w-auto h-full object-cover rounded  mx-auto max-h-[100px] max-w-[100px]">  
-                            </div> 
+                        <div class="flex flex-row mb-6 md:hidden gap-4">
+                            <div class="h-[150px] w-[150px] border border-[#E6BF8D] rounded-lg p-2 flex items-center justify-center">
+                                <img src="{{ asset('storage/' . $coffee->image) }}" alt="Product image" class="max-h-[120px] max-w-[120px] object-contain rounded">  
+                            </div>
                             <div class="ml-4">
                                 <div class="font-semibold text-lg text-[#663B10] mb-2">{{ $coffee->name }}</div>
                                 <div class="flex flex-row w-full items-end gap-6 mb-1">                            
@@ -425,13 +425,15 @@
             console.log('📬 fb-event received', event.detail);
 
             if (event.detail && event.detail.name) {
-                fbq('track', event.detail.name);
+                if (event.detail.options) {
+                    fbq('track', event.detail.name, event.detail.options);
+                } else {
+                    fbq('track', event.detail.name);
+                }
             }
         });
     });
-</script>
-
-                  
+</script>                 
 
 @endpush
 </div>

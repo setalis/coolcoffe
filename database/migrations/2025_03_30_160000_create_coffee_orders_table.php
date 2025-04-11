@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('sub2')->nullable();
             $table->string('reff')->nullable();
             $table->string('temp')->nullable();
+            $table->string('hit')->nullable();
             $table->boolean('completed')->default(false);
             $table->timestamps();
         });

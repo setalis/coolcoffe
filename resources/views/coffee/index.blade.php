@@ -67,7 +67,7 @@
                                             <p class="text-2xl font-bold text-red-500">${{ $coffee->delivery_price }}</p>
                                         </div>
                                         <div class="flex items-center justify-center gap-8 mb-4 relative">
-                                            <a href="{{ route('coffee.order', $coffee->id) }}"
+                                            <a href="{{ route('coffee.order', $coffee->id) }}{{ request()->has('hit') ? '?hit=' . request()->query('hit') : '' }}"
                                             class="order-btn bg-orange-600 px-8 py-4 rounded-full cursor-pointer flex items-center justify-center gap-2 uppercase font-bold text-white"
                                             >                                            
                                             order now
