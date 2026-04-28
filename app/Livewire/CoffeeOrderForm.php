@@ -6,6 +6,7 @@ use App\Models\Coffee;
 use App\Models\CoffeeOrder;
 use Livewire\Component;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 
 class CoffeeOrderForm extends Component
 {
@@ -173,7 +174,13 @@ class CoffeeOrderForm extends Component
                 'lname' => $order->lastname,
                 'fbpix' => $fb,
                 'hit' => $order->hit,
-            ]);;
+            ]);
+
+            Http::get('https://ad.analyzetowin.com/pb/', [
+                'hit' => $order->hit, // или конкретное значение
+                'tx' => $order->id,
+                'rev' => '',
+            ]);
 
             // dd($redirectUrl);
             return redirect()->away($redirectUrl);

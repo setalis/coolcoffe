@@ -33,15 +33,20 @@
                                     class="mt-1 block w-full rounded-md border border-indigo-300 focus:border-indigo-500 focus:ring-indigo-500 dark:bg-neutral-800 dark:border-neutral-700 dark:text-white px-4 py-2 cursor-pointer"
                                     required
                                 >
-                                    <option value="50g">50g</option>
+                                    <option value="">Выберите вес</option>
                                     <option value="100g">100g</option>
+                                    <option value="100g">200g</option>
                                     <option value="250g">250g</option>
                                     <option value="300g">300g</option>
                                     <option value="400g">400g</option>
                                     <option value="500g">500g</option>
+                                    <option value="500g">700g</option>
+                                    <option value="500g">900g</option>
+                                    <option value="500g">950g</option>
                                     <option value="1kg">1kg</option>
                                     <option value="2kg">2kg</option>
                                 </select>
+                                @error('weight') <span class="text-red-500 text-sm">{{ $weigth }}</span> @enderror
                             </div>
                         </div>
                         
